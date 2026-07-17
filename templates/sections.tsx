@@ -11,7 +11,7 @@
  * <Row> children — keeping renderToJson round-tripping to the visual editor.
  */
 import { Row, Column, ColumnLayouts, Heading, Paragraph, Divider } from "@unlayer/react-elements";
-import type { WrappedContent } from "../lib/generate-content";
+import { withUnit, type WrappedContent } from "../lib/generate-content";
 
 export const SANS = { label: "Helvetica", value: "helvetica,arial,sans-serif" };
 export const SERIF = { label: "Georgia", value: "georgia,'times new roman',serif" };
@@ -56,7 +56,7 @@ export function gradientBand(c: WrappedContent, pad = "0px") {
   const { brandColor, accentColor } = c.product;
   const steps = 8;
   return [
-    <Row key="band" cells={Array(steps).fill(1)} padding={pad} backgroundColor={CANVAS} noStackMobile>
+    <Row key="band" noStackMobile cells={Array(steps).fill(1)} padding={pad} backgroundColor={CANVAS}>
       {Array.from({ length: steps }, (_, i) => (
         <Column key={i} padding="0px" backgroundColor={mix(brandColor, accentColor, i / (steps - 1))}>
           <Paragraph html="&nbsp;" fontSize="4px" lineHeight="100%" />
@@ -76,14 +76,14 @@ export function heatStrip(c: WrappedContent, pad = "40px") {
   const cellColor = (m: WrappedContent["months"][number]) =>
     m.isPeak ? accentColor : mix(CARD2, brandColor, 0.08 + 0.92 * m.intensity);
   return [
-    <Row key="strip" cells={Array(12).fill(1)} padding={`4px ${pad} 0px`} backgroundColor={CANVAS} noStackMobile>
+    <Row key="strip" noStackMobile cells={Array(12).fill(1)} padding={`4px ${pad} 0px`} backgroundColor={CANVAS}>
       {c.months.map((m, i) => (
         <Column key={i} padding="0px" backgroundColor={cellColor(m)}>
           <Paragraph html="&nbsp;" fontSize="10px" lineHeight="340%" />
         </Column>
       ))}
     </Row>,
-    <Row key="labels" cells={Array(12).fill(1)} padding={`2px ${pad} 0px`} backgroundColor={CANVAS} noStackMobile>
+    <Row key="labels" noStackMobile cells={Array(12).fill(1)} padding={`2px ${pad} 0px`} backgroundColor={CANVAS}>
       {c.months.map((m, i) => (
         <Column key={i} padding="0px">
           <Paragraph
@@ -115,7 +115,7 @@ export function rankedBars(c: WrappedContent, pad = "40px") {
   return c.topList.items.flatMap((it) => {
     const barColor = mix(accentColor, brandColor, n === 1 ? 0 : (it.rank - 1) / (n - 1));
     return [
-      <Row key={`t${it.rank}`} cells={[2, 8, 3]} padding={`10px ${pad} 0px`} backgroundColor={CANVAS} noStackMobile>
+      <Row key={`t${it.rank}`} noStackMobile cells={[2, 8, 3]} padding={`10px ${pad} 0px`} backgroundColor={CANVAS}>
         <Column padding="0px">
           <Heading level="h3" fontSize="30px" fontWeight={800} color={barColor} textAlign="left" fontFamily={SANS}>
             {String(it.rank)}
@@ -129,7 +129,7 @@ export function rankedBars(c: WrappedContent, pad = "40px") {
         </Column>
         <Column padding="8px 0px 0px">
           <Paragraph
-            html={`<b>${it.valueFmt}</b> ${c.topList.unit}`}
+            html={`<b>${withUnit(it.valueFmt, c.topList.unit)}</b>`}
             fontSize="12px"
             color={MUTED}
             textAlign="right"
@@ -137,7 +137,7 @@ export function rankedBars(c: WrappedContent, pad = "40px") {
           />
         </Column>
       </Row>,
-      <Row key={`b${it.rank}`} cells={[it.pct, 100 - it.pct]} padding={`4px ${pad} 2px`} backgroundColor={CANVAS} noStackMobile>
+      <Row key={`b${it.rank}`} noStackMobile cells={[it.pct, 100 - it.pct]} padding={`4px ${pad} 2px`} backgroundColor={CANVAS}>
         <Column padding="0px" backgroundColor={barColor} borderRadius="99px">
           <Paragraph html="&nbsp;" fontSize="4px" lineHeight="150%" />
         </Column>

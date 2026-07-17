@@ -1,6 +1,8 @@
 [
   {
-    "user": { "name": "Maya Chen" },
+    "user": {
+      "name": "Maya Chen"
+    },
     "product": {
       "name": "Devflow",
       "tagline": "Ship in flow",
@@ -13,22 +15,61 @@
       "label": "hours in deep focus",
       "verb": "coded for",
       "total": 1284,
-      "monthly": [74, 68, 96, 102, 88, 71, 60, 115, 128, 186, 158, 138]
+      "monthly": [
+        74,
+        68,
+        96,
+        102,
+        88,
+        71,
+        60,
+        115,
+        128,
+        186,
+        158,
+        138
+      ]
     },
     "topList": {
       "title": "Your top languages",
       "unit": "hrs",
       "items": [
-        { "name": "TypeScript", "value": 512, "detail": "your daily driver since March" },
-        { "name": "Python", "value": 301, "detail": "mostly notebooks, mostly midnight" },
-        { "name": "Rust", "value": 204, "detail": "the borrow checker won 47 times" },
-        { "name": "Go", "value": 156, "detail": "every service you shipped in Q4" },
-        { "name": "SQL", "value": 111, "detail": "one query was 214 lines long" }
+        {
+          "name": "TypeScript",
+          "value": 512,
+          "detail": "your daily driver since March"
+        },
+        {
+          "name": "Python",
+          "value": 301,
+          "detail": "mostly notebooks, mostly midnight"
+        },
+        {
+          "name": "Rust",
+          "value": 204,
+          "detail": "the borrow checker won 47 times"
+        },
+        {
+          "name": "Go",
+          "value": 156,
+          "detail": "every service you shipped in Q4"
+        },
+        {
+          "name": "SQL",
+          "value": 111,
+          "detail": "one query was 214 lines long"
+        }
       ]
     },
     "percentile": 3,
-    "streak": { "days": 46, "label": "days coding in a row" },
-    "peakDay": { "date": "Oct 14", "detail": "9.2 hours in one glorious sitting" },
+    "streak": {
+      "days": 46,
+      "label": "days coding in a row"
+    },
+    "peakDay": {
+      "date": "Oct 14",
+      "detail": "9.2 hours in one glorious sitting"
+    },
     "persona": {
       "title": "The Night Owl.",
       "blurb": "68% of your commits landed after 9pm. The moon knows your test suite by heart."
@@ -36,7 +77,9 @@
     "shareUrl": "https://devflow.example.com/wrapped/2025/maya"
   },
   {
-    "user": { "name": "Jonas Weber" },
+    "user": {
+      "name": "Jonas Weber"
+    },
     "product": {
       "name": "Stride",
       "tagline": "Every run counts",
@@ -49,27 +92,145 @@
       "label": "kilometers on the road",
       "verb": "ran",
       "total": 1127,
-      "monthly": [61, 74, 98, 112, 126, 88, 64, 70, 118, 141, 102, 73],
-      "weeklyComparison": "That's 21.7 km a week — Berlin to Hamburg, four times over."
+      "monthly": [
+        61,
+        74,
+        98,
+        112,
+        126,
+        88,
+        64,
+        70,
+        118,
+        141,
+        102,
+        73
+      ],
+      "weeklyComparison": "That's 21.7 km a week \u2014 Berlin to Hamburg, four times over."
     },
     "topList": {
       "title": "Your top routes",
       "unit": "km",
       "items": [
-        { "name": "Tiergarten Loop", "value": 312, "detail": "your Tuesday ritual, 38 runs" },
-        { "name": "Tempelhofer Feld", "value": 246, "detail": "flat, fast, and windy as ever" },
-        { "name": "Spree Riverside", "value": 189, "detail": "golden hour, every time" },
-        { "name": "Grunewald Trails", "value": 141, "detail": "where the long Sundays live" },
-        { "name": "Landwehr Canal", "value": 98, "detail": "your recovery-day favorite" }
+        {
+          "name": "Tiergarten Loop",
+          "value": 312,
+          "detail": "your Tuesday ritual, 38 runs"
+        },
+        {
+          "name": "Tempelhofer Feld",
+          "value": 246,
+          "detail": "flat, fast, and windy as ever"
+        },
+        {
+          "name": "Spree Riverside",
+          "value": 189,
+          "detail": "golden hour, every time"
+        },
+        {
+          "name": "Grunewald Trails",
+          "value": 141,
+          "detail": "where the long Sundays live"
+        },
+        {
+          "name": "Landwehr Canal",
+          "value": 98,
+          "detail": "your recovery-day favorite"
+        }
       ]
     },
     "percentile": 8,
-    "streak": { "days": 21, "label": "days running in a row" },
-    "peakDay": { "date": "May 4", "detail": "31.6 km — your first marathon-plus week" },
+    "streak": {
+      "days": 21,
+      "label": "days running in a row"
+    },
+    "peakDay": {
+      "date": "May 4",
+      "detail": "31.6 km \u2014 your first marathon-plus week"
+    },
     "persona": {
       "title": "The Dawn Patroller.",
       "blurb": "73% of your kilometers happened before 8am. Sunrise is basically your training partner."
     },
     "shareUrl": "https://stride.example.com/wrapped/2025/jonas"
+  },
+  {
+    "user": {
+      "name": "Aditi Rao"
+    },
+    "product": {
+      "name": "Lumen",
+      "tagline": "Money, in focus",
+      "url": "https://lumen.example.com",
+      "brandColor": "#0EA5E9",
+      "accentColor": "#A3E635"
+    },
+    "year": 2025,
+    "metric": {
+      "label": "dollars saved",
+      "verb": "saved",
+      "total": 8450,
+      "monthly": [
+        520,
+        610,
+        585,
+        640,
+        720,
+        655,
+        590,
+        730,
+        812,
+        905,
+        798,
+        885
+      ],
+      "weeklyComparison": "That's $162 a week \u2014 future you says thanks.",
+      "prefix": "$"
+    },
+    "topList": {
+      "title": "Where you cut back",
+      "unit": "$",
+      "items": [
+        {
+          "name": "Eating out",
+          "value": 2140,
+          "detail": "home cooking won 143 nights"
+        },
+        {
+          "name": "Subscriptions",
+          "value": 1830,
+          "detail": "you cancelled 9 you forgot you had"
+        },
+        {
+          "name": "Impulse buys",
+          "value": 1560,
+          "detail": "the 48-hour rule works"
+        },
+        {
+          "name": "Rideshares",
+          "value": 1220,
+          "detail": "the bike came back strong"
+        },
+        {
+          "name": "Coffee runs",
+          "value": 700,
+          "detail": "the French press paid for itself 31\u00d7"
+        }
+      ]
+    },
+    "percentile": 5,
+    "streak": {
+      "days": 38,
+      "label": "days under budget in a row"
+    },
+    "peakDay": {
+      "date": "Nov 28",
+      "detail": "$612 saved dodging Black Friday"
+    },
+    "persona": {
+      "title": "The Quiet Compounder.",
+      "blurb": "Small moves, every single week. Your savings curve never saw a bad month."
+    },
+    "shareUrl": "https://lumen.example.com/wrapped/2025/aditi"
   }
 ]

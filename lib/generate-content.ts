@@ -24,6 +24,7 @@ export interface WrappedInput {
     label: string; // "hours in flow" / "kilometers run"
     verb: string; // "coded" / "ran" — used in copy
     total: number;
+    prefix?: string; // "$" — prepended to the hero number
     monthly: number[]; // 12 values, Jan..Dec
     weeklyComparison?: string; // optional custom "that's …" line
   };
@@ -76,6 +77,12 @@ const MONTH_NAMES = [
 
 const num = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 
+/** "512 hrs" for suffix units, "$512" for currency-style units. */
+export const withUnit = (valueFmt: string, unit: string) =>
+  unit === "$" || unit === "€" || unit === "£" || unit === "₹"
+    ? `${unit}${valueFmt}`
+    : `${valueFmt} ${unit}`;
+
 export function generateContent(input: WrappedInput): WrappedContent {
   const { metric, topList } = input;
   if (metric.monthly.length !== 12) throw new Error("metric.monthly must have 12 values (Jan..Dec)");
@@ -109,11 +116,11 @@ export function generateContent(input: WrappedInput): WrappedContent {
     metric: {
       label: metric.label,
       verb: metric.verb,
-      totalFmt: num.format(metric.total),
+      totalFmt: `${metric.prefix ?? ""}${num.format(metric.total)}`,
       comparison,
     },
     months,
-    peakMonth: `${MONTH_NAMES[peakIdx]} was your biggest month — ${num.format(peakVal)} ${topList.unit}.`,
+    peakMonth: `${MONTH_NAMES[peakIdx]} was your biggest month — ${withUnit(num.format(peakVal), topList.unit)}.`,
     topList: {
       title: topList.title,
       unit: topList.unit,

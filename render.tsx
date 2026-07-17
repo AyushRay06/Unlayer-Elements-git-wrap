@@ -13,6 +13,7 @@ import { renderToHtml, renderToPlainText, renderToJson } from "@unlayer/react-el
 import { generateContent, type WrappedInput } from "./lib/generate-content";
 import { wrappedEmail } from "./templates/wrapped-email";
 import { wrappedPage } from "./templates/wrapped-page";
+import { wrappedPoster } from "./templates/wrapped-poster";
 
 const root = dirname(fileURLToPath(import.meta.url));
 const outDir = join(root, "demo", "output");
@@ -41,30 +42,62 @@ for (const input of inputs) {
 
   console.log(`\n${input.user.name} — ${input.product.name} ${input.year} Wrapped`);
 
+  // The charts ARE the layout, so rows must keep their proportions on mobile
+  // instead of stacking to full width. The renderer's CSS ships a `.no-stack`
+  // escape hatch (with per-width rules already generated) but no prop emits
+  // the class — so we tag every row with it here.
+  const noStack = (html: string) => html.replace(/class="u-row /g, 'class="u-row no-stack ');
+
   // 1. <Email> — the Wrapped recap (html + text/plain part + editor JSON)
   const email = wrappedEmail(c);
-  out("email.html", renderToHtml(email, { title: `Your ${c.year} ${c.product.name} Wrapped` }));
+  out("email.html", noStack(renderToHtml(email, { title: `Your ${c.year} ${c.product.name} Wrapped` })));
   out("email.txt", renderToPlainText(email));
   out("email.design.json", JSON.stringify(renderToJson(email), null, 2)); // round-trips into Unlayer's visual editor
 
   // 2. <Page> — the shareable web version
-  out("page.html", renderToHtml(wrappedPage(c), { title: `${c.user.firstName}'s ${c.year} Wrapped — ${c.product.name}` }));
+  out("page.html", noStack(renderToHtml(wrappedPage(c), { title: `${c.user.firstName}'s ${c.year} Wrapped — ${c.product.name}` })));
 
-  // 3. PNG screenshots via headless Chrome (for the README)
+  // 3. <Document> — the printable Year Poster (print backgrounds forced on)
+  // Force print backgrounds + a custom single poster-sized page.
+  const posterHtml = renderToHtml(wrappedPoster(c), { title: `${c.user.firstName}'s ${c.year} Wrapped Poster` })
+    .replace(
+      "</head>",
+      // Document mode appends a page-break separator div — a one-page poster doesn't want it.
+      "<style>*{-webkit-print-color-adjust:exact;print-color-adjust:exact}@page{size:800px 1330px;margin:0}body{margin:0}div[style*='page-break-before']{display:none!important}</style></head>",
+    );
+  out("poster.html", posterHtml);
+  if (chrome) {
+    execFileSync(chrome, [
+      "--headless",
+      "--disable-gpu",
+      "--no-pdf-header-footer",
+      `--print-to-pdf=${join(outDir, `${slug}.poster.pdf`)}`,
+      join(outDir, `${slug}.poster.html`),
+    ], { stdio: "pipe" });
+    console.log(`  ✓ ${slug}.poster.pdf`);
+  }
+
+  // 4. PNG screenshots via headless Chrome (for the README)
   if (wantScreens) {
     if (!chrome) {
       console.warn("  ⚠ Chrome not found — skipping screenshots.");
     } else {
       const shotsDir = join(outDir, "screenshots");
       mkdirSync(shotsDir, { recursive: true });
-      for (const [mode, width, height] of [["email", 640, 2560], ["page", 900, 2620]] as const) {
+      for (const [mode, file, width, height] of [
+        ["email", "email", 640, 2560],
+        ["email-mobile", "email", 375, 3400],
+        ["page", "page", 900, 2620],
+        ["poster", "poster", 800, 1330],
+      ] as const) {
         execFileSync(chrome, [
           "--headless",
           "--disable-gpu",
+          "--hide-scrollbars",
           "--force-device-scale-factor=2",
           `--window-size=${width},${height}`,
           `--screenshot=${join(shotsDir, `${mode}-${slug}.png`)}`,
-          join(outDir, `${slug}.${mode}.html`),
+          join(outDir, `${slug}.${file}.html`),
         ], { stdio: "pipe" });
         console.log(`  ✓ screenshots/${mode}-${slug}.png`);
       }
