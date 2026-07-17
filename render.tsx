@@ -42,11 +42,31 @@ for (const input of inputs) {
 
   console.log(`\n${input.user.name} — ${input.product.name} ${input.year} Wrapped`);
 
-  // The charts ARE the layout, so rows must keep their proportions on mobile
-  // instead of stacking to full width. The renderer's CSS ships a `.no-stack`
-  // escape hatch (with per-width rules already generated) but no prop emits
-  // the class — so we tag every row with it here.
-  const noStack = (html: string) => html.replace(/class="u-row /g, 'class="u-row no-stack ');
+  // The charts ARE the layout, so the heat strip and gradient bands must keep
+  // their proportions on mobile instead of stacking to full width. The renderer's CSS
+  // ships a `.no-stack` escape hatch (with per-width rules already generated) but no
+  // prop emits the class — so we add it selectively. Avoid it on label rows and stat
+  // grids so they stack cleanly on narrow screens.
+  const noStack = (html: string) => {
+    // Split into rows and add no-stack ONLY if the row is a pure chart grid:
+    // — heat strip: 12 cols of u-col-12p5 (8x for page strips, 12x for email)
+    // — gradient band: 8 cols of u-col-12p5 (not u-col-*p5 but truly 12.5%)
+    // Exclude label rows [2,8,3] and stat grids [50,50] so they stack on mobile.
+    const parts = html.split(/(?=<div class="u-row (?:no-stack )?v-row-columns)/);
+    return parts.map((part, i) => {
+      if (i === 0) return part; // header before first row
+      const match = /class="u-row (?:no-stack )?v-row-columns/.exec(part);
+      if (!match) return part;
+      // Detect chart rows by their column signatures
+      const colsInRow = (part.match(/u-col u-col-[0-9p]+/g) || []).slice(0, 20);
+      const cols = colsInRow.map(c => c.split('-').pop());
+      // Keep no-stack on: 12 identical cols (heat strip) or 8 identical cols (gradient/page strip)
+      const isChart = (cols.length === 12 && cols.every(c => c === cols[0])) ||
+                      (cols.length === 8 && cols.every(c => c === cols[0]));
+      if (!isChart) return part; // remove any existing no-stack from label/grid rows
+      return part.replace(/class="(u-row) (?:no-stack )?/, 'class="$1 no-stack '); // ensure it's there
+    }).join('');
+  };
 
   // 1. <Email> — the Wrapped recap (html + text/plain part + editor JSON)
   const email = wrappedEmail(c);
@@ -86,7 +106,7 @@ for (const input of inputs) {
       mkdirSync(shotsDir, { recursive: true });
       for (const [mode, file, width, height] of [
         ["email", "email", 640, 2560],
-        ["email-mobile", "email", 375, 3400],
+        ["email-mobile", "email", 375, 5800],  // stacked layout (labels + grids stack on mobile) is ~2.3x the desktop height
         ["page", "page", 900, 2620],
         ["poster", "poster", 800, 1330],
       ] as const) {
