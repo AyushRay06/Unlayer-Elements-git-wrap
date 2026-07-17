@@ -1,0 +1,7 @@
+node_modules/
+demo/output/*.html
+demo/output/*.txt
+demo/output/*.pdf
+demo/output/*.design.json
+*.log
+.DS_Store

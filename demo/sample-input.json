@@ -1,0 +1,75 @@
+[
+  {
+    "user": { "name": "Maya Chen" },
+    "product": {
+      "name": "Devflow",
+      "tagline": "Ship in flow",
+      "url": "https://devflow.example.com",
+      "brandColor": "#6C5CE7",
+      "accentColor": "#00E5A0"
+    },
+    "year": 2025,
+    "metric": {
+      "label": "hours in deep focus",
+      "verb": "coded for",
+      "total": 1284,
+      "monthly": [74, 68, 96, 102, 88, 71, 60, 115, 128, 186, 158, 138]
+    },
+    "topList": {
+      "title": "Your top languages",
+      "unit": "hrs",
+      "items": [
+        { "name": "TypeScript", "value": 512, "detail": "your daily driver since March" },
+        { "name": "Python", "value": 301, "detail": "mostly notebooks, mostly midnight" },
+        { "name": "Rust", "value": 204, "detail": "the borrow checker won 47 times" },
+        { "name": "Go", "value": 156, "detail": "every service you shipped in Q4" },
+        { "name": "SQL", "value": 111, "detail": "one query was 214 lines long" }
+      ]
+    },
+    "percentile": 3,
+    "streak": { "days": 46, "label": "days coding in a row" },
+    "peakDay": { "date": "Oct 14", "detail": "9.2 hours in one glorious sitting" },
+    "persona": {
+      "title": "The Night Owl.",
+      "blurb": "68% of your commits landed after 9pm. The moon knows your test suite by heart."
+    },
+    "shareUrl": "https://devflow.example.com/wrapped/2025/maya"
+  },
+  {
+    "user": { "name": "Jonas Weber" },
+    "product": {
+      "name": "Stride",
+      "tagline": "Every run counts",
+      "url": "https://stride.example.com",
+      "brandColor": "#FF4D6D",
+      "accentColor": "#FFD166"
+    },
+    "year": 2025,
+    "metric": {
+      "label": "kilometers on the road",
+      "verb": "ran",
+      "total": 1127,
+      "monthly": [61, 74, 98, 112, 126, 88, 64, 70, 118, 141, 102, 73],
+      "weeklyComparison": "That's 21.7 km a week — Berlin to Hamburg, four times over."
+    },
+    "topList": {
+      "title": "Your top routes",
+      "unit": "km",
+      "items": [
+        { "name": "Tiergarten Loop", "value": 312, "detail": "your Tuesday ritual, 38 runs" },
+        { "name": "Tempelhofer Feld", "value": 246, "detail": "flat, fast, and windy as ever" },
+        { "name": "Spree Riverside", "value": 189, "detail": "golden hour, every time" },
+        { "name": "Grunewald Trails", "value": 141, "detail": "where the long Sundays live" },
+        { "name": "Landwehr Canal", "value": 98, "detail": "your recovery-day favorite" }
+      ]
+    },
+    "percentile": 8,
+    "streak": { "days": 21, "label": "days running in a row" },
+    "peakDay": { "date": "May 4", "detail": "31.6 km — your first marathon-plus week" },
+    "persona": {
+      "title": "The Dawn Patroller.",
+      "blurb": "73% of your kilometers happened before 8am. Sunrise is basically your training partner."
+    },
+    "shareUrl": "https://stride.example.com/wrapped/2025/jonas"
+  }
+]

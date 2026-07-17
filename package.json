@@ -1,0 +1,23 @@
+{
+  "name": "elements-wrapped",
+  "version": "1.0.0",
+  "description": "Wrapped — a Spotify-Wrapped-style personal year-in-review email, dark-mode-native, every chart drawn with Rows and Columns. Built with Unlayer Elements. #BuiltWithElements",
+  "type": "module",
+  "scripts": {
+    "render": "tsx render.tsx",
+    "render:screens": "tsx render.tsx --screens"
+  },
+  "keywords": ["unlayer", "elements", "wrapped", "year-in-review", "email", "BuiltWithElements"],
+  "license": "MIT",
+  "dependencies": {
+    "@unlayer/react-elements": "latest",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
