@@ -106,7 +106,6 @@ for (const input of inputs) {
       mkdirSync(shotsDir, { recursive: true });
       for (const [mode, file, width, height] of [
         ["email", "email", 640, 2560],
-        ["email-mobile", "email", 375, 5800],  // stacked layout (labels + grids stack on mobile) is ~2.3x the desktop height
         ["page", "page", 900, 2620],
         ["poster", "poster", 800, 1330],
       ] as const) {

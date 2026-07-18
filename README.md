@@ -50,14 +50,11 @@ Rendered with `<Document>`, then piped through headless Chrome with print backgr
 
 ### The email — `<Email>`
 
-Table-based, Outlook/Gmail-safe HTML — and because it renders identically on a phone, the charts hold their proportions instead of collapsing. Left: full email. Right: the same email at 375px wide (the bars keep their ratios via a `no-stack` escape hatch instead of stacking to full width).
+Table-based, Outlook/Gmail-safe HTML. Because every chart is drawn from `Row`/`Column` proportions (not fixed images), the layout holds up across clients — and a `no-stack` escape hatch keeps the heat strip and gradient bands horizontal on narrow screens while the ranked-bar labels and stat grid stack cleanly.
 
-<table>
-<tr>
-<td width="60%"><img src="demo/output/screenshots/email-maya-chen.png" alt="Devflow Wrapped email, full width"/></td>
-<td width="40%"><img src="demo/output/screenshots/email-mobile-maya-chen.png" alt="Devflow Wrapped email on mobile"/></td>
-</tr>
-</table>
+<p align="center">
+<img src="demo/output/screenshots/email-maya-chen.png" alt="Devflow Wrapped email" width="60%"/>
+</p>
 
 Every email also emits a **`text/plain` MIME part** (via `renderToPlainText`) and an **Unlayer editor `design.json`** (via `renderToJson`) that round-trips back into the visual editor — so a non-technical marketer can open the generated Wrapped and tweak it by hand.
 
@@ -97,13 +94,13 @@ The "view your Wrapped in the browser" version — same shared sections, wider c
 ```bash
 npm install
 npm run render           # → demo/output/*.{html,txt,design.json} + poster PDFs
-npm run render:screens   # same, plus PNG screenshots (desktop + mobile) via headless Chrome
+npm run render:screens   # same, plus PNG screenshots via headless Chrome
 ```
 
 `npm run render` writes, for each of the three demo users:
 
 ```
-<user>.email.html          table-based email HTML (mobile-safe, no-stack charts)
+<user>.email.html          table-based email HTML (no-stack charts hold their proportions)
 <user>.email.txt           text/plain MIME part
 <user>.email.design.json   Unlayer editor JSON (round-trips into the visual editor)
 <user>.page.html           responsive web version
@@ -126,7 +123,7 @@ templates/
   wrapped-poster.tsx      <Document> — the print-ready Year Poster → PDF
 render.tsx                generateContent → renderToHtml/PlainText/Json → files (+ PDF + screenshots)
 demo/sample-input.json    three fictional users/products (coding · running · finance)
-demo/output/screenshots/  committed PNG previews (desktop + mobile, all three modes)
+demo/output/screenshots/  committed PNG previews (all three modes)
 ```
 
 ---
