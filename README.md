@@ -14,8 +14,8 @@ Three fictional products. **One shared template. One hex pair each.** The email 
 
 <table>
 <tr>
-<td width="33%"><b>Devflow</b> — coding app<br/><img src="demo/output/screenshots/email-maya-chen.png" alt="Devflow Wrapped email"/></td>
-<td width="33%"><b>Stride</b> — running app<br/><img src="demo/output/screenshots/email-jonas-weber.png" alt="Stride Wrapped email"/></td>
+<td width="33%"><b>Devflow</b> — coding app<br/><img src="demo/output/screenshots/email-ayu-chen.png" alt="Devflow Wrapped email"/></td>
+<td width="33%"><b>Stride</b> — running app<br/><img src="demo/output/screenshots/email-jonas-smith.png" alt="Stride Wrapped email"/></td>
 <td width="33%"><b>Lumen</b> — finance app<br/><img src="demo/output/screenshots/email-aditi-rao.png" alt="Lumen Wrapped email"/></td>
 </tr>
 </table>
@@ -40,8 +40,8 @@ The whole point of Elements is *write once, render everywhere*. This proves it �
 
 <table>
 <tr>
-<td width="33%"><img src="demo/output/screenshots/poster-maya-chen.png" alt="Devflow Year Poster"/></td>
-<td width="33%"><img src="demo/output/screenshots/poster-jonas-weber.png" alt="Stride Year Poster"/></td>
+<td width="33%"><img src="demo/output/screenshots/poster-ayu-chen.png" alt="Devflow Year Poster"/></td>
+<td width="33%"><img src="demo/output/screenshots/poster-jonas-smith.png" alt="Stride Year Poster"/></td>
 <td width="33%"><img src="demo/output/screenshots/poster-aditi-rao.png" alt="Lumen Year Poster"/></td>
 </tr>
 </table>
@@ -53,7 +53,7 @@ Rendered with `<Document>`, then piped through headless Chrome with print backgr
 Table-based, Outlook/Gmail-safe HTML. Because every chart is drawn from `Row`/`Column` proportions (not fixed images), the layout holds up across clients — and a `no-stack` escape hatch keeps the heat strip and gradient bands horizontal on narrow screens while the ranked-bar labels and stat grid stack cleanly.
 
 <p align="center">
-<img src="demo/output/screenshots/email-maya-chen.png" alt="Devflow Wrapped email" width="60%"/>
+<img src="demo/output/screenshots/email-ayu-chen.png" alt="Devflow Wrapped email" width="60%"/>
 </p>
 
 Every email also emits a **`text/plain` MIME part** (via `renderToPlainText`) and an **Unlayer editor `design.json`** (via `renderToJson`) that round-trips back into the visual editor — so a non-technical marketer can open the generated Wrapped and tweak it by hand.
@@ -64,8 +64,8 @@ The "view your Wrapped in the browser" version — same shared sections, wider c
 
 <table>
 <tr>
-<td width="50%"><img src="demo/output/screenshots/page-maya-chen.png" alt="Devflow Wrapped web page"/></td>
-<td width="50%"><img src="demo/output/screenshots/page-jonas-weber.png" alt="Stride Wrapped web page"/></td>
+<td width="50%"><img src="demo/output/screenshots/page-ayu-chen.png" alt="Devflow Wrapped web page"/></td>
+<td width="50%"><img src="demo/output/screenshots/page-jonas-smith.png" alt="Stride Wrapped web page"/></td>
 </tr>
 </table>
 
